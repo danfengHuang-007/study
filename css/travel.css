@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+/* to use 'cover' funtion, we need to set the height of body, and its father size, which is html */
+/* The default height of HTML and body is 0, causing the cover scaling of the background image to fail */
+html{
+    height: 100%;
+}
+/* The overall background of the entire page */
+body{
+    
+    height: 100%;
+    background: url(../images/f1_1.jpg) no-repeat center 0; 
+    /* Make the image cover the entire browser */
+    background-size: cover;
+}
+/* cloud */
+.cloud img{
+    /* move clouds to the central */
+    position: absolute;
+    left: 50%;
+}
+
+/* move first cloud to left */
+.cloud img:nth-child(1){
+    margin-left: -250px;
+    top: 20px;
+    /* use 'alternate' to make the animation have two directions, forward and reverse */
+    animation: cloud 1s infinite alternate linear;
+}
+
+.cloud img:nth-child(2){
+    margin-left: 400px;
+    top: 100px;
+    /* delay effect */
+    animation: cloud 1s infinite alternate linear 0.4s;
+
+}
+
+.cloud img:nth-child(3){
+    margin-left: -550px;
+    top: 200px;
+    animation: cloud 1s infinite alternate linear 0.6s;
+
+}
+
+/* Translation animation, making the clouds move horizontally from left to right */
+@keyframes cloud {
+    100%{
+        transform: translate(20px);
+    }
+}
+/* ballon */
+.ballon img{
+    /* move clouds to the central */
+    position: absolute;
+    left: 50%;
+    margin-left: -365px;
+    top: 90px;
+    animation: ballon 1s infinite alternate linear;
+}
+@keyframes ballon {
+    100%{
+        transform: translateY(20px);
+    }
+}
+/* labels */
+.labels img{
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+}
+.labels img:nth-child(1){
+    margin-left: -350px;
+    animation: ballon 1s infinite alternate linear;
+
+
+}
+.labels img:nth-child(2){
+    margin-left: -180px;
+    animation: ballon 1s infinite alternate linear 0.2s;
+}
+.labels img:nth-child(3){
+    margin-left: -10px;
+    animation: ballon 1s infinite alternate linear 0.5s;
+}
+.labels img:nth-child(4){
+    margin-left: 200px;
+    animation: ballon 1s infinite alternate linear 0.8s;
+}
+
+/* text */
+.text img{
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    /* make it center, without checking position */
+    transform: translate(-50%,-50%);
+    
+}
+.text img:hover{
+    animation: text 1s;
+
+}
+
+
+/* default -> small ->large -> small -> default */
+@keyframes text {
+    0%{
+        transform: translate(-50%,-50%) scale(1);
+
+    }
+    20%{
+        transform: translate(-50%,-50%) scale(0.1);
+
+    }
+    40%{
+        transform: translate(-50%,-50%) scale(1.4);
+
+    }
+    70%{
+        transform: translate(-50%,-50%) scale(0.8);
+
+    }
+    100%{
+        transform: translate(-50%,-50%) scale(1);
+
+    }
+}
+
+/* lu */
+.lu img{
+    position: absolute;
+    left: 50%;
+    /* make it center, without checking position */
+    margin-left: 200px;
+    top: 60px;
+    
+}
