@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>carousel(zoumadeng)</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            list-style: none;
+        }
+
+        img{
+            display: block;
+            width: 200px;
+        }
+
+        .box{
+            width: 600px;
+            height: 112px;
+            border: 5px solid #000;
+            margin: 100px auto;
+            /* hide the overflowed picture */
+            overflow: hidden;
+        }
+
+        /* make all pictures in one line */
+        .box ul{
+            display: flex;
+            /* use animation */
+            animation: move 6s infinite linear ;
+        }
+        /* Define a displacement animation; Apply animation to the <ul> element */
+        @keyframes move {
+            /* only two state, begining and end, so eiher use 'from' 'to' or '0%' and '100%*/
+            0%{
+                transform: translate(0); 
+            }
+            /* size of each pic is 200px, totally there are 7 pics, and the diection is from left to right, then it is negative  */
+            100%{
+                transform: translate(-1400px);
+            }
+        }
+        /* Mouse hover pauses the animation, father is box, and when mouse in the box, then animation stops */
+        .box:hover ul{
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li><img src="./images/1.jpg" alt=""></li>
+            <li><img src="./images/2.jpg" alt=""></li>
+            <li><img src="./images/3.jpg" alt=""></li>
+            <li><img src="./images/4.jpg" alt=""></li>
+            <li><img src="./images/5.jpg" alt=""></li>
+            <li><img src="./images/6.jpg" alt=""></li>
+            <li><img src="./images/7.jpg" alt=""></li>
+            <!-- Placeholder: Fill the exposed area of the display -->
+            <li><img src="./images/1.jpg" alt=""></li>
+            <li><img src="./images/2.jpg" alt=""></li>
+            <li><img src="./images/3.jpg" alt=""></li>
+        </ul>
+    </div>
+
+</body>
+</html>

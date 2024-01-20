@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spritesheet animation</title>
+    <style>
+        /* The box size = width of a sprite image */
+        div{
+            width: 140px;
+            height: 140px;
+            border: 1px solid #000;
+            background-image: url(./images/bg1.png); 
+            /* step(N) N=the number of pictures in spirit image*/
+            animation: run 1s steps(12) infinite;
+        }
+
+        @keyframes run {
+            from{
+                /* the start point is 0 0 */
+                background-position: 0 0;
+
+            }
+            to{
+                /* the end point is the length of the spritsheet, and direction is to left, thus, it is negative */
+                background-position: -1680px 0;
+
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
