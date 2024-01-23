@@ -1,0 +1,96 @@
+// out: ../css/
+
+@import "./base.less";
+
+// define an variable
+@rootSize: 37.5rem;
+
+// header
+header {
+    // display in one line
+    display: flex;
+    justify-content: space-between;
+    padding: 0 (15 / @rootSize);
+    height: (44 / @rootSize);
+    // background-color: pink;
+    // make the text in the center
+    line-height: (44 / @rootSize);
+
+    // modify iconfont size 
+    .icon-left {
+        font-size: (22 / @rootSize);
+    }
+
+    h3 {
+        font-size: (17 / @rootSize);
+    }
+
+    .note {
+        font-size: (15 / @rootSize);
+        color: #2cb5a5;
+    }
+}
+
+// banner 
+.banner {
+    margin-top: (30 / @rootSize);
+    margin-bottom: (34 / @rootSize);
+    text-align: center;
+
+    // modify the picture size
+    img {
+        // make some space between texts and picture
+        margin-bottom: (18 / @rootSize);
+        width: (240 / @rootSize);
+        height: (206 / @rootSize);
+    }
+
+    p {
+        font-size: (16 / @rootSize);
+        span {
+            color: #16c2a3;
+        }
+    }
+}
+
+.type{
+    padding: 0 (15 / @rootSize);
+    li{
+        margin-bottom: (15 / @rootSize);
+        padding: 0 (15 / @rootSize);
+        height: (78 /@rootSize);
+        // side line
+        border: 1px solid #ededed;
+        border-radius: (4 / @rootSize);
+        a {
+            display: flex;
+            // center the lateral axes 
+            align-items: center;
+            // make content is vertically centered inside 78
+            height: (78 /@rootSize);
+            img{
+                margin-right: (14 / @rootSize);
+                width: (40 / @rootSize);
+                height: (40 / @rootSize);
+            }
+
+            .txt{
+                // deduct the size of picture and iconfont, the rest area is for text 
+                flex: 1;
+                h4{
+                    font-size: (16 / @rootSize);
+                    color: #3C3E42;
+                    line-height: (24 / @rootSize);
+                }
+                p{
+                    font-size: (13 / @rootSize);
+                    color: #848484;
+                }
+            }
+
+            .iconfont {
+                font-size: (16 / @rootSize);
+            }
+        }
+    }
+}
