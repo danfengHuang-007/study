@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>order details page</title>
+    <style>
+        .title {
+            text-align: center;
+            color: #3e3e3e;
+        }
+
+        .order {
+            /* Merge neighboring borders */
+            border-collapse: collapse;
+            height: 80px;
+            margin: 0 auto;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+        }
+
+        /* Adding a gradient background color to a row */
+        .order tr:nth-child(1) {
+            background-image: linear-gradient(to right, #f46e33, #f057a5);
+        }
+
+        .order tr:nth-child(2) {
+            background-image: linear-gradient(to right, #fdf0eb, #fdeff6);
+        }
+
+        .order tr:nth-child(2) :last-child {
+            color: #f282bb;
+        }
+
+        .order th {
+            padding: 5px 50px;
+            color: #fff;
+        }
+
+        .order,
+        th,
+        td {
+            border: 1px solid #fff;
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="title">Order details page</h2>
+
+    <script>
+        let price = prompt('pls enter the price:')
+        let num = prompt('pls enter the quantity:')
+        let address = prompt('pls enter the address:')
+
+        let total = price * num
+        alert(total)
+
+        document.write(`
+        <table class="order">
+            <tr>
+                <th>Commodity name</th>
+                <th>Commodity price</th>
+                <th>Commodity quantity</th>
+                <th>Total price</th>
+                <th>address</th>
+            </tr>
+            <tr>
+                <td>Xiaomi qingchun PLUS</td>
+                <td>${price}RMB</td>
+                <td>${num}</td>
+                <td>${total}RMB</td>
+                <td>${address} </td>
+            </tr>
+        </table>
+        `)
+
+
+
+    </script>
+</body>
+
+</html>

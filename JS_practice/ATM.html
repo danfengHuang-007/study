@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATMs</title>
+</head>
+
+<body>
+    <script>
+        let money = 100
+        while (true) {
+
+            let num = +prompt(`
+            Please select your operation
+               1. Withdraw
+               2. Deposit
+               3. Check Balance
+               4. Exit
+            `)
+
+            if (num === 1) {
+                let qu = +prompt('pls enter the amount')
+                money = money - qu
+            } else if (num === 2) {
+                let cun = +prompt('pls enter the amount')
+                money = money + cun
+            } else if (num === 3) {
+                alert(`Your card balance is: ${money}`)
+            } else if (num === 4) {
+                break
+            }
+        }
+        document.write(`di, your card balance is : ${money}RMB, pls save`)
+    </script>
+</body>
+
+</html>

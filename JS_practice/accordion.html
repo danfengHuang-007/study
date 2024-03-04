@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title>
+    <style>
+        .box{
+            display: flex;
+            overflow: hidden;
+            width: 1120px;
+            height: 260px;
+            margin: 50px auto;
+        }
+
+        .box>div {
+            width: 120px;
+            border: 1px solid #fff;
+            transition: all 0.5s;
+        }
+
+        .box>div:hover {
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <script>
+        let arr = [
+        './images/1.jpg',
+        './images/2.jpg',
+        './images/3.jpg',
+        './images/4.jpg',
+        './images/5.jpg',
+        './images/6.jpg',
+        './images/7.jpg',
+        ]
+
+        let str = ' '
+        for(let i = 0; i<arr.length; i++){
+            str += `
+            <div><img src="${arr[i]}" alt=""></div>
+            `
+        }
+        // Put the spliced string into a box.
+        document.write(`
+        <div class="box">
+            ${str}
+        
+        </div>
+        
+        `)
+    </script>
+</body>
+</html>
