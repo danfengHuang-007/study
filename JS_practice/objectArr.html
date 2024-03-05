@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentInfo</title>
+    <style>
+        h2,
+        p{
+            text-align: center;
+        }
+
+        .student {
+            overflow: hidden;
+            margin: 0 auto;
+            /* join boders */
+            border-collapse: collapse;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .student tr{
+            cursor: pointer;
+        }
+
+        .student th {
+            padding: 5px 50px;
+            color: #fff;
+        }
+
+        .student,
+        th,
+        td{
+            border: 1px solid #fff;
+            line-height: 45px;
+        }
+
+        /* add background color to the row*/
+        .student thead tr{
+            background-image: linear-gradient(to right, #f46e33, #f057a5);
+        }
+
+        /* add background color to the second row*/
+        .student tbody tr {
+            background-image: linear-gradient(to right,#fdf0eb,#fdeff6);
+        }
+
+        /* from second row, the last cell change color*/
+        .student tbody tr:last-child{
+            color: #f282bb;
+        }
+
+        /* the first row, color doesn't change when cursor pass*/
+        .student tbody tr:hover {
+            background-image: linear-gradient(to right, #f9e3da, #f9d6e8);
+        }
+    </style>
+</head>
+<body>
+    <h2>Student's Info</h2>
+    <p>Store students'values into array, and present it by form.</p>
+    <script>
+        let students = [
+            {name:'xiaoming',age:18,sex:'M',hometown:'Heibei'},
+            {name:'xiaohong',age:19,sex:'F',hometown:'Heinan'},
+            {name:'xiaogang',age:17,sex:'M',hometown:'Shanxi'},
+            {name:'xiaoli',age:18,sex:'M',hometown:'Shandong'}
+        ]
+
+        
+
+        //1. create row labels based on the number of objects, and use string to connect them
+        let str =''
+        // iterate array
+        for(let i =0 ;i<students.length;i++){
+            str += `
+            <tr>
+                <td>${i+1}</td>
+                <td>${students[i].name}</td>
+                <td>${students[i].age}</td>
+                <td>${students[i].sex}</td>
+                <td>${students[i].hometown}</td>
+            </tr>
+            `
+        }
+        //2. put strings into tbody
+        document.write(`
+            <table class="student">
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>sex</th>
+                        <th>Hometown</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${str}
+                </tbody>
+            </table>
+        `
+        )
+    </script>
+</body>
+</html>
