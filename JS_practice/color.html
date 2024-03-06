@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1. write a function
+        function getRandomColor(flag = true){
+            //2. if true or '', rerurn rgb
+            if(flag) {
+                // create an array
+                let arr = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']
+                let str = '#'
+                for(let i=1;i<=6;i++){
+                    let random = Math.floor(Math.random()*16)
+                    str += arr[random]
+                }
+                return str
+            } else{
+                 //3. else return #fffff
+                 // 3.1 use random to generate three 0-255 integers
+                 let r = Math.floor(Math.random()*256)
+                 let g = Math.floor(Math.random()*256)
+                 let b = Math.floor(Math.random()*256)
+                 return `rgb(${r},${g},${b})`
+
+            }
+
+        }
+        
+       
+    </script>
+</body>
+</html>
