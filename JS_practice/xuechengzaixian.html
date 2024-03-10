@@ -9,6 +9,20 @@
     <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
+    <div class="course wrapper">
+        <div class="hd">
+          <h3>Recommend</h3>
+          <a href="#">Check All
+            <span class="iconfont icon-arrow-right-bold">
+            </span>
+          </a>
+        </div>
+        <div class="bd">
+          <ul class="common">
+    
+          </ul>
+        </div>
+      </div>
     <script>
         //1. prepare array data 
         let data = [
@@ -81,22 +95,10 @@
         `
     }
 
-    document.write(`
-         <div class="course wrapper">
-            <div class="hd">
-                <h3> JINPING RECOMMEND</h3>
-                <a href="#">check all
-                    <span class="iconfont icon-arrow-right-bold">
-                    </span>
-                </a>
-            </div>
-            <div class="bd">
-                <ul class="common">
-                    ${str}
-                </ul>
-            </div>
-        </div>
-    `)
+    // 3. get li's father-> ul
+    const ul = document.querySelector('.common')
+    //4. put 10 li into ul
+    ul.innerHTML = str
     </script>
 </body>
 </html>
