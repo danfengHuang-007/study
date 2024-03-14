@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Background Picture</title>
+    <style>
+        body{
+            overflow: hidden;
+            min-height: 620px;
+            background: url(./images/1.jpg) no-repeat center center/cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- <img src="'./images/1.jpg'" alt=""> -->
+    <script>
+        
+        const arr = [
+            './images/1.jpg',
+            './images/2.jpg',
+            './images/3.jpg',
+            './images/4.jpg'
+        ]
+
+        // get image element
+        const img = document.querySelector('img')
+        // 1. use random to choose one from array
+        const random = Math.floor(Math.random()* arr.length)
+        // assign new values to src 
+        // img.src = arr[random]
+        // change body style
+        document.body.style.backgroundImage = `url(${arr[random]})
+        `
+
+    </script>
+    
+</body>
+</html>
