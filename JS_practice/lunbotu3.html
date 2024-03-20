@@ -180,6 +180,15 @@
                 next.click()
         },1000)
         })
+
+        // use round icon to change the picture
+        const lis = document.querySelectorAll('.slider-indicator li')
+        for(let j=0;j<lis.length;j++){
+            lis[j].addEventListener('click', function(){
+                i = j
+                toggle()
+            })
+        }
     </script>
     
 </body>
