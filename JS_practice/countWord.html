@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Count Words</title>
+    <style>
+        .wrapper {
+            min-width: 400px;
+            max-width: 800px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .avatar {
+            overflow: hidden;
+            width: 48px;
+            height: 48px;
+            margin-right: 20px;
+            border-radius: 50%;
+            background: url(./images/avatar.jpg) no-repeat center / cover;
+        }
+
+        .wrapper textarea {
+            flex: 1;
+            height: 30px;
+            padding: 10px;
+            border-color: transparent;
+            outline: none;
+            resize: none;
+            background: #f5f5f5;
+            border-radius: 4px;
+            transition: all 0.5s;
+        }
+
+        .wrapper textarea:focus {
+            height: 50px;
+            border-color: #e4e4e4;
+            background: #fff;
+        }
+
+        .wrapper button {
+            width: 70px;
+            margin-left: 10px;
+            border: none;
+            color: #fff;
+            background: #00aeec;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .wrapper .total {
+            margin-right: 80px;
+            margin-top: 5px;
+            color: #999;
+            opacity: 0;
+            transition: all 0.5s;
+        }
+
+        .list {
+            display: flex;
+            min-width: 400px;
+            max-width: 800px;
+        }
+
+        .list .item {
+            display: flex;
+            width: 800px;
+        }
+
+        .list .item .info {
+            flex: 1;
+            border-bottom: 1px dashed #e4e4e4;
+            padding-bottom: 10px;
+        }
+
+        .list .item p {
+            margin: 0;
+        }
+
+        .list .item .name {
+            color: #FB7299;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .list .item .text {
+            padding: 10px 0;
+            color: #333;
+            font-size: 13px;
+        }
+
+        .list .item .time {
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <i class="avatar"></i>
+        <textarea  id="tx" placeholder="publish a friendly comment" rows="2" maxlength="200"></textarea>
+        <button>Publish</button>
+    </div>
+    <div class="wrapper">
+        <span class="total">0/200 words</span>
+    </div>
+    <div class="list">
+        <div class="item" style="display: none;">
+            <i class="avatar"></i>
+            <div class="info">
+                <p class="name">Soft wind</p>
+                <p class="text">Thanks everyone</p>
+                <p class="time">2099-10-10 20:29:21</p>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        // get text object, when focus, change opacity to 1
+        const tx = document.querySelector('#tx')
+        const total = document.querySelector('.total')
+        // get focused
+        tx.addEventListener('focus',function(){
+            total.style.opacity = 1
+        })
+        // lost focus 
+        tx.addEventListener('blur',function(){
+            total.style.opacity = 0
+        })
+
+        // count the input length 
+        tx.addEventListener('input',function(){
+            total.innerText = `${tx.value.length}/200 words`
+        })
+
+        // check if enter 
+        // get the hidden comment first 
+        const item = document.querySelector('.item')
+        const text = document.querySelector('.text')
+        tx.addEventListener('keyup',function(e){
+            if(e.key === 'Enter'){
+                /* btn.click() */
+                item.style.display = 'flex'
+                text.innerHTML = tx.value
+
+                // clear text area
+                tx.value=''
+                total.innerText = '0/200 words'
+            }
+        })
+        // click button -> publish 
+        const btn = document.querySelector('.wrapper button')
+        btn.addEventListener('click', function (){
+
+            item.style.display = 'flex'
+            text.innerHTML = tx.value
+
+            // clear text area
+            tx.value=''
+            total.innerText = '0/200 words'
+        })
+    </script>
+</body>
+</html>

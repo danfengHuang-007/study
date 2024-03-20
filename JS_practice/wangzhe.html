@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wangzhe closure</title>
+    <style>
+        .pop{
+            display: block;
+            visibility: visible;
+            position: fixed;
+            z-index: 9999;
+            left: 50%;
+            top: 50%;
+            width: 530px;
+            height: 254px;
+            margin-top: -127px;
+            margin-left: -265px;
+            background: url(./images/login.webp) no-repeat;
+        }
+
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pop">
+        <a href="javascript:;" class="close"></a>
+    </div>
+    <script>
+        // event source
+        const closeBtn = document.querySelector('.close')
+        // get father box
+        const pop = document.querySelector('.pop')
+        // register event 
+        closeBtn.addEventListener('click', function(){
+            // close father box, mainly use display:none
+            pop.style.display = 'none'
+
+        })
+    </script>
+</body>
+</html>
