@@ -1239,8 +1239,8 @@
         </div>
     </div>
     <!-- elevator -->
-    <div class="xtx_elevator">
-        <ul class="xtx_elevator-list">
+    <div class="xtx-elevator">
+        <ul class="xtx-elevator-list">
             <li><a href="javascript:;" class="small">Fresh goods</a></li>
             <li><a href="javascript:;" class="small">Popular goods</a></li>
             <li><a href="javascript:;" class="small">Hot brands</a></li>
@@ -1249,7 +1249,25 @@
         </ul>
     </div>
     <script>
-        
+        // get elevator (side bar)
+        const elevator = document.querySelector('.xtx-elevator')
+        window.addEventListener('scroll',function(){
+            // get side bar value 
+            const n = document.documentElement.scrollTop
+            
+            if(n>=300){
+                elevator.style.opacity = 1
+            }else{
+                elevator.style.opacity = 0
+            }
+        })
+
+        // click the return icon, back to the top
+        const backTop = document.querySelector('#backTop')
+        backTop.addEventListener('click',function(){
+            document.documentElement.scrollTop = 0
+
+        })
     </script>
 </body>
 </html>
