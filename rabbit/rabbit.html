@@ -1251,6 +1251,9 @@
     <script>
         // get elevator (side bar)
         const elevator = document.querySelector('.xtx-elevator')
+        const xtx_header = document.querySelector('.xtx_header')
+        const sticky = document.querySelector('.app-header-sticky')
+
         window.addEventListener('scroll',function(){
             // get side bar value 
             const n = document.documentElement.scrollTop
@@ -1260,6 +1263,27 @@
             }else{
                 elevator.style.opacity = 0
             }
+            // stick top navigaton bar
+            // check whether page is slidding till header moudle; if yes, then we add 'show' class
+            if(n>= xtx_header.offsetTop){
+                sticky.classList.add('show')
+
+            }else{
+                sticky.classList.remove('show')
+            }
+
+            // when the page moves, remove the highlight
+            const old = document.querySelector('.xtx-elevator-list .active')
+            old && old.classList.remove('active')
+
+            // scroll big module and highliht the small icon
+            for(let i=0;i<bigs.length;i++){
+                if(n>=bigs[i].offsetTop -sticky.offsetHeight){
+                    const old = document.querySelector('.xtx-elevator-list .active')
+                    old && old.classList.remove('active')
+                    smalls[i].classList.add('active')
+                }
+            }
         })
 
         // click the return icon, back to the top
@@ -1268,6 +1292,23 @@
             document.documentElement.scrollTop = 0
 
         })
+
+        // highlight small module 
+        const smalls = document.querySelectorAll('.small')
+        const bigs = document.querySelectorAll('.big')
+        // use for loop
+        for(let i = 0; i<smalls.length;i++) {
+            smalls[i].addEventListener('click',function(){
+                // at the begining, there is no class with active, so that we can not remove them
+                const old = document.querySelector('.xtx-elevator-list .active')
+                old && old.classList.remove('active')
+                // remove the previous small module
+                //document.querySelector('xtx-elevator-list .active').classList.remove('active')
+                this.classList.add('active')
+
+                document.documentElement.scrollTop = bigs[i].offsetTop - sticky.offsetHeight
+            })
+        }
     </script>
 </body>
 </html>
