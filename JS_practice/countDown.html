@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>countdown</title>
+    <style>
+        .countdown {
+            width: 240px;
+            height: 305px;
+            text-align: center;
+            line-height: 1;
+            color: #fff;
+            background-color: brown;
+            overflow: hidden;
+        }
+
+        .countdown .next {
+            font-size: 16px;
+            margin: 25px 0 14px;
+        }
+
+        .countdown .title {
+            font-size: 33px;
+        }
+        .countdown .tips {
+            margin-top: 80px;
+            font-size: 23px;
+        }
+
+        .countdown small{
+            font-size: 17px;
+        }
+
+        .countdown .clock {
+            width: 142px;
+            margin: 18px auto 0;
+            overflow: hidden;
+        }
+
+        .countdown .clock span,
+        .countdown .clock i {
+            display: block;
+            text-align: center;
+            line-height: 34px;
+            font-size: 23px;
+            float: left;
+        }
+
+        .countdown .clock span{
+            width: 34px;
+            height: 34px;
+            border-radius: 2px;
+            background-color: #303430;
+        }
+
+        .countdown .clock i {
+            width: 20px;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        <p class="next">Today is 2024 Year 31rd Mar</p>
+        <p class="title">Countdown to the end of the shift</p>
+        <p class="clock">
+            <span id="hour">00</span>
+            <i>:</i>
+            <span id="minutes">25</span>
+            <i>:</i>
+            <span id="second">20</span>
+        </p>
+        <p class="tips">18:30:30 Class Over</p>
+    </div>
+    <script>
+        //1.get timer function, use future time - current time 
+        function getTimer(){
+            //1.1 get future timer
+            const end = +new Date('2024-4-1 20:30:00')
+            // 1.2 get current timer
+            const now = +new Date()
+            const count = (end - now) /1000 // get seconds
+            console.log(count)
+            //2. convert to time, minutes and second
+            let h = parseInt(count / 60 / 60 % 24)
+            // supplement 0 
+            h = h < 10 ? '0' + h : h
+            
+            let m = parseInt(count / 60 % 60)
+            m = m <10 ? '0' + m : m
+            let s = parseInt(count % 60)
+            s = s <10 ? '0' + s : s
+
+            // put in span 
+            document.querySelector('#hour').innerHTML = h
+            document.querySelector('#minutes').innerHTML = m
+            document.querySelector('#second').innerHTML = s 
+        }
+        getTimer()
+        // set a timer, update by every second
+        setInterval(getTimer, 1000)
+    </script>
+    
+</body>
+</html>
