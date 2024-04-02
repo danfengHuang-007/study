@@ -177,7 +177,40 @@
             document.querySelector('.address-book').innerHTML = str
         }
         render()
-        
+
+        // 2. slidding effect
+        function initSwipe(){
+            // get item box 
+            const items = document.querySelector('.item')
+            items.forEach(function(ele){
+                // use swpie api
+                new AlloyFinger(ele, {
+                    swipe: function (evt) {
+                        // if direction is left
+                        if(evt.direction === 'Left'){
+                            // excluse other item's active class
+                            const active = document.querySelector('.active')
+                            active && active.classList.remove('active')
+                            ele.classList.add('active') 
+                        }else{
+                            ele.classList.remove('active')
+                        }
+                    }
+
+                })
+            })
+        }
+        initSwipe()
+        // 3. add new contact function
+        const nameText = document.querySelector('#name')
+        const telText = document.querySelector('#tel')
+        // click button -> create new contact
+        document.querySelector('#add').addEventListener('click', function(){
+            if (nameText.value === '' || telText.value === ''){
+                alert('name or tel can not be null')
+                return
+            }
+        })
     </script>
     
 </body>
