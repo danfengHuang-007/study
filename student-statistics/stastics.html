@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Student Employment Statistics</title>
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <h1>Student Employment Statistics</h1>
+    <form class="info" autocomplete="off">
+        <input type="text" class="uname" name="uname" placeholder="name">
+        <input type="text" class="age" name="age" placeholder="age">
+        <input type="text" class="salary" name="salary" placeholder="salary">
+        <select name="gender" class="gender">
+            <option value="Male">Man</option>
+            <option value="Female">Female</option>
+        </select>
+        <select name="city" class="city">
+            <option value="BeiJing">Beijing</option>
+            <option value="ShangHai">ShangHai</option>
+            <option value="GuangZhou">GuangZhou</option>
+            <option value="ShenZhen">ShenZhen</option>
+            <option value="CaoXian">CaoXian</option>
+        </select>
+        <button class="add">
+            <i class="iconfont icon-tianjia"></i> Add
+        </button>
+    </form>
+
+    <div class="title">Common Statistics <span>0</span>Records</div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Salary</th>
+                <th>City</th>
+                <th>Record Time</th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+    <script>
+        const initData = [
+            {
+                stuId: 1,
+                uname: 'Reba',
+                age: 22,
+                salary: '12000',
+                gender: 'female',
+                city: 'Beijing',
+                time: '2099/9/9 08:08:08'
+            }
+        ]
+        const tbody = document.querySelector('tbody')
+        // store data into localStorage
+        // localStorage.setItem('data',JSON.stringify(initData))
+        // get local stored data
+        const arr = JSON.parse(localStorage.getItem('data')) || [] 
+        // use map and join to render the page
+        function render(){
+            // use map to iterate array, and return string
+            const trArr = arr.map(function (ele, index) {
+                return `
+                <tr>
+                    <td>${ele.stuId}</td>
+                    <td>${ele.uname}</td>
+                    <td>${ele.age}</td>
+                    <td>${ele.gender}</td>
+                    <td>${ele.salary}</td>
+                    <td>${ele.city}</td>
+                    <td>${ele.time}</td>
+                    <td>
+                        <a href="javascript:" data-id="${index}">
+                            <i class="iconfont icon-shanchu"></i>
+                            Del
+                        </a>
+                    </td>
+                </tr>
+                `
+            })
+            // convert trArr to string
+            tbody.innerHTML = trArr.join('')
+            // disply how many records
+            document.querySelector('.title span').innerHTML = arr.length
+        }
+        render()
+        // add new records
+        const info = document.querySelector('.info')
+        const uname = document.querySelector('.uname')
+        const age = document.querySelector('.age')
+        const salary = document.querySelector('.salary')
+        const gender = document.querySelector('.gender')
+        const city = document.querySelector('.city')
+        info.addEventListener('submit', function(e){
+            e.preventDefault() // once submit, will not jumpt to the next page
+            // if null, then shows error
+            if (!uname.value || !age.value || !salary.value){
+                return alert('input can not be null')
+            }
+            // add new records 
+            arr.push({
+                stuId: arr.length ? arr[arr.length-1].stuId+1 : 1,
+                uname: uname.value,
+                age: age.value,
+                salary: salary.value,
+                gender: gender.value,
+                city: city.value,
+                time: new Date().toLocaleString()
+            })
+            render()
+            // reset the form
+            this.reset()
+            // store the date
+            localStorage.setItem('data', JSON.stringify(arr))
+        })
+        // delete records
+        tbody.addEventListener('click', function(e){
+            // if click 'a'
+            if (e.target.tagName === 'A'){
+                if (confirm('Are you sure to delete this record')) {
+                    arr.splice(e.target.dataset.id, 1)
+                    render()
+                    localStorage.setItem('data', JSON.stringify(arr))
+                }
+            }
+        })
+
+    </script>
+    
+</body>
+</html>

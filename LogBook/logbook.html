@@ -148,7 +148,7 @@
         <button id="add">Add Contact</button>
     </div>
     <!-- import gesture -->
-    <script src="https://unpkg.com/alloyfinger@0.1.16/alloy_finger.js"></script>
+    <script src="./logbook.js"></script>
     <script>
         // initialize data
         const arr = [
@@ -162,27 +162,32 @@
         function render(){
             let str = ''
             // iterate array 
-            arr.forEach(function(ele){
+            arr.forEach(function(ele, index){
                 str+= `
                  <div class="item">
                     <p class="circle">${ele.name.substring(ele.name.length-1)}</p>
                     <p class="name">${ele.name} </p>
                     <p class="tel">${ele.tel} </p>
                     <a class="del" href="javascript:;" ">
-                        <i class=" iconfont icon-shanchutianchong"></i>
+                        
+                        <i class=" iconfont icon-shanchutianchong" data-index = "${index}"></i>
                     </a>
                 </div>
                 `
             })
             document.querySelector('.address-book').innerHTML = str
+            // ensure all items can slide 
+            initSwipe()
         }
         render()
+
+    
 
         // 2. slidding effect
         function initSwipe(){
             // get item box 
-            const items = document.querySelector('.item')
-            items.forEach(function(ele){
+            const items = document.querySelectorAll('.item')
+            items.forEach(function (ele) {
                 // use swpie api
                 new AlloyFinger(ele, {
                     swipe: function (evt) {
@@ -197,10 +202,10 @@
                         }
                     }
 
-                })
+                });
             })
         }
-        initSwipe()
+        
         // 3. add new contact function
         const nameText = document.querySelector('#name')
         const telText = document.querySelector('#tel')
@@ -210,7 +215,35 @@
                 alert('name or tel can not be null')
                 return
             }
+            // 3.2 add new contact
+            arr.push({
+                name:nameText.value,
+                tel:telText.value
+            })
+            // 3.3 render the page
+            render()
+            // clear form
+            nameText.value = ''
+            telText.value = ''
         })
+
+        // 4. delete item
+        // 4.1 add event listener to the father class
+        document.querySelector('.address-book').addEventListener('click', function(e){
+            // only click the delete icon, we can delete the record
+            if(e.target.tagName === 'I'){
+                // avoid delete
+                const con = confirm('Are you sure to delete the record')
+                if (con) {
+                    // get self defined index : e.target.dataset.index
+                    // delete the records
+                    arr.splice(e.target.dataset.index, 1)
+                    render()
+                }
+            }
+
+        })
+
     </script>
     
 </body>
