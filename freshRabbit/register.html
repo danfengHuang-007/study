@@ -197,7 +197,117 @@
         </div>
     </div>
     <script>
-        
+        // Send SMS 5 seconds countdown service
+        const codeBtn = document.querySelector('.code')
+        // Switch variable to prevent multiple clicks
+        let flag = true
+        codeBtn.addEventListener('click', function(){
+            if (flag) {
+                // Countdown effect using timer
+                let i = 5
+                // click and change text 
+                codeBtn.innerHTML = `Recapture in 05 seconds`
+                let timerId = setInterval(function () {
+                    i--
+                    codeBtn.innerHTML = `Recapture in 0${i} seconds`
+                    // When the time is up, the text will read, "Retrieve.
+                    if (i === 0){
+                        codeBtn.innerHTML = `Recapture `
+                        clearInterval(timerId)
+                        // open switch
+                        flag = true 
+                    }
+                }, 1000)
+
+                // close switch
+                flag = false 
+            }
+        })
+
+        // Form Validation Services
+        const regName = /^[a-zA-Z0-9-_]{6,10}$/
+        // use change event to validate the form
+        const username = document.querySelector('[name=username]')
+        username.addEventListener('change', verifyName)
+        function verifyName(){
+            // If the conditions are not met, an error message is prompted
+            if (!regName.test(username.value)) {
+                username.nextElementSibling.innerHTML = 'Please enter 6-10 digits'
+                return false
+            }
+            // clear span
+            username.nextElementSibling.innerHTML = ''
+
+            return true
+        }
+
+        // Cell phone number verification
+        const regPhone = /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/
+        // use change event to validate the form
+        const phone = document.querySelector('[name=phone]')
+        phone.addEventListener('change', verifyPhone)
+        function verifyPhone(){
+            // If the conditions are not met, an error message is prompted
+            if (!regPhone.test(phone.value)) {
+                phone.nextElementSibling.innerHTML = 'Please enter 11 digits'
+                return false
+            }
+            // clear span
+            phone.nextElementSibling.innerHTML = ''
+            return true
+        }
+
+        // CAPTCHA verification
+        const regCode = /^\d{6}$/
+        // use change event to validate the form
+        const code = document.querySelector('[name=code]')
+        code.addEventListener('change', verifyCode)
+        function verifyCode(){
+            // If the conditions are not met, an error message is prompted
+            if (!regCode.test(code.value)) {
+                code.nextElementSibling.innerHTML = 'Please enter 6 digits'
+                return false
+            }
+            // clear span
+            code.nextElementSibling.innerHTML = ''
+            return true
+        }
+
+        // password verification
+        const regPwd = /^[a-zA-Z0-9-_]{6,20}$/
+        // use change event to validate the form
+        const password = document.querySelector('[name=password]')
+        password.addEventListener('change', verifyPwd)
+        function verifyPwd(){
+            // If the conditions are not met, an error message is prompted
+            if (!regPwd.test(password.value)) {
+                password.nextElementSibling.innerHTML = 'Please enter 6-20 letters or digits'
+                return false
+            }
+            // clear span
+            password.nextElementSibling.innerHTML = ''
+            return true
+        }
+
+        // verify password again
+        const confirm = document.querySelector('[name=confirm]')
+        confirm.addEventListener('change', verifyConfirm)
+        function verifyConfirm(){
+            // If the conditions are not met, an error message is prompted
+            if (confirm.value !== password.value) {
+                confirm.nextElementSibling.innerHTML = 'password does not match'
+                return false
+            }
+            // clear span
+            confirm.nextElementSibling.innerHTML = ''
+            return true
+        }
+
+
+
+
+
+
     </script>
     
 </body>
