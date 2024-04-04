@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide the middle four digits of your cell phone number case</title>
+    <style>
+        .wrapper {
+            width: 840px;
+            height: 420px;
+            background: url(./images/bg01.jpg) no-repeat center / cover;
+            padding: 100px 250px;
+            box-sizing: border-box;
+        }
+
+        .wrapper strong {
+            font-size: 50px;
+        }
+
+        .wrapper span {
+            color:#b10e0d
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <strong>Annual Raffle</strong>
+        <h1>winning phone no: <span class="phone">???</span></h1>
+    </div>
+    <script>
+        const tel = '13611112222'
+        const reg = /^(\d{3})\d{4}(\d{4})$/
+        const str = tel.replace(reg, '$1****$2')
+        // only shows last four digits 
+        const reg1 = /^\d{7}(\d{4})$/
+        const str2 = tel.replace(reg1, `${'*'.repeat(7)}$1`)
+        document.querySelector('.phone').innerHTML = str2
+    </script>
+    
+</body>
+</html>
