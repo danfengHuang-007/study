@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Job Hunting Statistics</title>
+    <link rel="stylesheet" href="job.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+</head>
+<body>
+    <h1>Job Hunting Statistics</h1>
+    <form class="info" autocomplete="off">
+        <input type="text" class="company" name="company" placeholder="Company">
+        <input type="text" class="title" name="title" placeholder="Title">
+        <input type="text" class="salary" name="salary" placeholder="Salary">
+        <input type="text" class="responsibility" name="responsibility" placeholder="Responsibility">
+        <select name="work-type" class="work-type">
+            <option value="full-Time">Full-Time</option>
+            <option value="part-Time">Part-Time</option>
+            <option value="contract">Contract</option>
+        </select>
+
+        <button class="add">
+            <i class="iconfont icon-tianjia"></i> Add
+        </button>
+    </form>
+
+    <div class="records">Statistics <span>0</span> Records</div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Company</th>
+                <th>Title</th>
+                <th>Work Type</th>
+                <th>Responsibility</th>
+                <th>Salary</th>
+                <th>Submit Date</th>
+                <th>Status</th>
+                <th>Operations</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        const initData = [
+            {
+                comId: 1,
+                comName:'Shine Solutions Group',
+                jobTitle: 'DevOps Engineer',
+                workType: 'Full-Time',
+                responsibility: "<a href='https://www.seek.com.au/job/74919306?ref=search-standalone&type=standout#sol=58c35cbae503c9599d5f6a880aec22c0e276d5e1'></a>",
+                
+                salary: '10000',
+                submit_date:'4/4/2024',
+                status: 'submitted'
+
+            }
+        ]
+        const tbody = document.querySelector('tbody')
+        // localStorage.setItem('data',JSON.stringify(initData))
+        const arr = JSON.parse(localStorage.getItem('data')) || []
+        function render() {
+            const trArr = arr.map(function (ele, index){
+                return `
+                <tr>
+                    <td>${ele.comId}</td>
+                    <td>${ele.comName}</td>
+                    <td>${ele.jobTitle}</td>
+                    <td>${ele.workType}</td>
+                    <td>${ele.responsibility}</td>
+                    <td>${ele.salary}</td>
+                    <td>${ele.submit_date}</td>
+                    <td>${ele.status}</td>
+                    <td>
+                        <a href="javascript:" data-id="${index}">
+                            <i class="iconfont icon-shanchu"></i>
+                            Del
+                        </a>
+                    </td>
+                </tr>
+                `
+            })
+            tbody.innerHTML = trArr.join('')
+            document.querySelector('.records span').innerHTML = arr.length
+        }
+        render()
+        const info = document.querySelector('.info')
+        const comName = document.querySelector('.company')
+        const jobTitle = document.querySelector('.title')
+        const workType = document.querySelector('.work-type')
+        const responsibility = document.querySelector('.responsibility')
+        
+        const salary = document.querySelector('.salary')
+        
+
+        info.addEventListener('submit', function(e){
+            e.preventDefault()
+            if (!comName.value || !jobTitle.value || !salary.value || !responsibility) {
+                return alert ('input values can not be null')
+            }
+            // add new records 
+            arr.push({
+                comId: arr.length ? arr[arr.length-1].comId+1 : 1, 
+                comName: comName.value, 
+                jobTitle: jobTitle.value, 
+                salary: salary.value, 
+                responsibility: responsibility.value, 
+                workType: workType.value, 
+                submit_date: new Date().toLocaleString()
+            })
+            render()
+            this.reset()
+            localStorage.setItem('data', JSON.stringify(arr))
+        })
+        // delete records 
+        tbody.addEventListener('click', function(e){
+            if (e.target.tagName === 'A'){
+                if (confirm('Are you sure to delete')) {
+                    arr.splice(e.target.dataset.id, 1)
+                    render()
+                    localStorage.setItem('data', JSON.stringify(arr))
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
