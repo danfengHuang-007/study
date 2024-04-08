@@ -1203,69 +1203,48 @@
       </div>
     </div>
   </div>
-
   <script>
-    // 显示用户名业务
     const firstLi = document.querySelector('.xtx_navs li')
     const secondLi = firstLi.nextElementSibling
-    // 1. 封装渲染函数 render
     function render() {
       const data = localStorage.getItem('xtx-uname')
-      // (1) 如果本地存储里面有数据，则按照已登录结构渲染
-      if (data) {
+      if(data){
         firstLi.innerHTML = `<a href="javascript:;">
           <i class="iconfont icon-user">${data}</i>
-        </a>`
-        secondLi.innerHTML = '<a href="javascript:;">退出登录</a>'
+          </a>
+        `
+        secondLi.innerHTML = '<a href="javascript:;">Logout</a>'
       } else {
-        // (2) 如果本地存储里面没有数据，则按照未登录结构渲染
-        firstLi.innerHTML = '<a href="./login.html">请先登录</a>'
-        secondLi.innerHTML = '<a href="./register.html">免费注册</a>'
+        firstLi.innerHTML = '<a href="./login.html">Login</a>'
+        secondLi.innerHTML = '<a href="./register.html">Register</a>'
       }
     }
-
     render()
 
-    // 2. 点击退出登录
+    // Click to log out
     const q = secondLi.querySelector('a')
-    q.addEventListener('click', function () {
-      // (1) 删除本地存储数据
+    q.addEventListener('click', function(){
       localStorage.removeItem('xtx-uname')
-      // (2) 重新渲染页面
       render()
     })
 
+    // Jump to mobile page
+    ;(function(){
+      const userAgent = navigator.userAgent
+      // check is android or iphone
+      const android = userAgent.match(/(Android);?[\s\/]+([\d.]+)?/)
+      const iphone = userAgent.match(/(iPhone\sOS)\s([\d_]+)/)
 
-      // 3. 跳转到移动端页面 
-
-      // 检测 userAgent（浏览器信息）
-      ; (function () {
-        const userAgent = navigator.userAgent
-        // 验证是否为Android或iPhone
-        const android = userAgent.match(/(Android);?[\s\/]+([\d.]+)?/)
-        const iphone = userAgent.match(/(iPhone\sOS)\s([\d_]+)/)
-
-        // 如果是Android或iPhone，则跳转至移动站点
-        if (android || iphone) {
-          location.href = 'http://m.itcast.cn'
-        }
-      })()
+      if(android || iphone){
+        location.href = 'http://m.itcast.cn'
+      }
+    })()
 
   </script>
 
-  <!-- 已登录结构
-  <li>
-    <a href="javascript:;">
-      <i class="iconfont icon-user">pink666</i>
-    </a>
-  </li>
-  <li><a href="javascript:;">退出登录</a></li> 
-  -->
+ 
 
-  <!-- 未登录结构
-  <li><a href="./login.html">请先登录</a></li>
-  <li><a href="./register.html">免费注册</a></li>
-  -->
+
 
 
 </body>

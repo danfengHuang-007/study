@@ -303,6 +303,32 @@
             return true
         }
 
+        // confirmation agreement
+        const queren = document.querySelector('.icon-queren')
+        queren.addEventListener('click', function(){
+            this.classList.toggle('icon-queren2')
+        })
+        // submit form
+        const xtx = document.querySelector('.xtx-form')
+        xtx.addEventListener('submit', function(e){
+            if(!queren.classList.contains('icon-queren2')){
+                e.preventDefault()
+                alert('pls tick the agreement')
+            }
+
+            // check every input
+            if(!verifyName()) e.preventDefault()
+            if(!verifyPhone()) e.preventDefault()
+            if(!verifyCode()) e.preventDefault()
+            if(!verifyPwd()) e.preventDefault()
+            if(!verifyConfirm()) e.preventDefault()
+        })
+
+        
+
+
+
+
 
 
 
