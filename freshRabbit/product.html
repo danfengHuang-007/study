@@ -588,6 +588,64 @@
             </div>
         </div>
     </div>
+    <script>
+        (function(){
+            const small = document.querySelector('.small')
+            const middle = document.querySelector('.middle')
+            const large = document.querySelector('.large')
+            const layerBlack = middle.children[1]
+            // Mouse over the small picture, the left picture follows the change
+            small.addEventListener('mouseover', function(e){
+                if(e.target.tagName === 'IMG'){
+                    middle.children[0].src = e.target.src
+                    // remove other 'li' active class
+                    small.querySelector('.active').classList.remove('active')
+                    // give li's father active class
+                    e.target.parentNode.classList.add('active')
+                }
+            })
+
+            // when the mouse enter the middle box, display large and layer boxes
+            let timerId = null
+            middle.addEventListener('mouseenter', function(){
+                large.style.display = 'block'
+                // change large box's backgroundIMg
+                large.style.backgroundImage = `url(${middle.children[0].src})`
+                layerBlack.style.display = 'block'
+                clearTimeout(timerId)
+            })
+
+            // when the mouse leave, hidden the large box, and add timer. and hiddren layer box 
+            
+            middle.addEventListener('mouseleave', function(){
+                timerId = setTimeout(function(){
+                    large.style.display = 'none'
+
+                }, 200)
+                
+                layerBlack.style.display = 'none'
+            })
+            // make layer moves with mouse
+            middle.addEventListener('mousemove', function(e){
+                let x = e.offsetX - layerBlack.offsetWidth / 2
+                let y = e.offsetY - layerBlack.offsetHeight / 2
+                // restrict x and y 
+                const maxX = middle.offsetWidth - layerBlack.offsetWidth
+                const maxY = middle.offsetHeight - layerBlack.offsetHeight 
+                x = x < 0 ? 0 : x
+                x = x >maxX ? maxX : x 
+                y = y < 0 ? 0 : y
+                y = y >maxY ? maxY : y 
+
+                layerBlack.style.top = y + 'px'
+                layerBlack.style.left = x + 'px'
+
+                // 4. large box moves 
+                large.style.backgroundPosition = `${-2 * x}px ${-2 * y}px`
+            })
+
+        })();
+    </script>
     
 
 </body>
