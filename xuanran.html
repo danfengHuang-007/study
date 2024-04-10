@@ -57,11 +57,39 @@
             content: "$";
             font-size: 14px;
         }
+
+        .filter {
+            display: flex;
+            width: 990px;
+            margin: 0 auto;
+            padding: 50px 30px;
+        }
+
+        .filter a {
+            padding: 10px 20px;
+            background: #f5f5f5;
+            color: #666;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .filter a:active, 
+        .filter a:focus {
+            background: #05943c;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
-    <div class="list">
+    <div class="filter">
+        <a data-index="1" href="javascript:;">0-100 Dollar</a>
+        <a data-index="2" href="javascript:;">100-300 Dollar</a>
+        <a data-index="3" href="javascript:;">Above 300 Dollar</a>
+        <a href="javascript:;">All Internals</a>
 
+    </div>
+    <div class="list">
+        
     </div>
 
     <script>
@@ -140,7 +168,24 @@
 
         }
         render(goodsList)
-        
+
+        // filter business
+        document.querySelector('.filter').addEventListener('click', function(e){
+            const {tagName, dataset} = e.target
+            if(tagName === 'A'){
+                let arr = goodsList // solve all intervals problem
+                if(dataset.index === '1'){
+                    arr = goodsList.filter(ele => ele.price >=0 && ele.price <=100)
+                } else if (dataset.index === '2'){
+                    arr = goodsList.filter(ele => ele.price >=100 && ele.price <=300)
+                }else if (dataset.index === '3'){
+                    arr = goodsList.filter(ele => ele.price >=300)
+                }
+                // render page 
+                render(arr)
+            }
+        })
+    
     </script>
     
 </body>
