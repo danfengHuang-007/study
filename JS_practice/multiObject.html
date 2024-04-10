@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Case for Multi-Level Object Deconstruction</title>
+</head>
+<body>
+    <script>
+        const msg = {
+            "code": 200,
+            "msg": "Getting News List Succeeded",
+            "data": [
+                {
+                    "id": 1,
+                    "title": "5G commercialization itself, three major utilizers' revenues fall",
+                    "count": 58
+                },
+                {
+                    "id": 2,
+                    "title": "A quick look at international media headlines",
+                    "count": 56
+                },
+                {
+                    "id": 3,
+                    "title": "Ongoing conflict between Ukraine and Russia",
+                    "count": 1669
+                }
+            ]
+        }
+        // get data 
+        const {data} = msg
+
+        function render(msg){
+            const {data} = msg
+        }
+        render(msg )
+
+        function render({data: myData}){
+            console.log(myData)
+        }
+        render(msg )
+    </script>
+    
+</body>
+</html>
