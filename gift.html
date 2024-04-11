@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tag {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <p class="name"></p>
+    <script>
+        const gift = '50g tea, wahsing balls'
+        const arr = gift.split(',')
+        const strArr = arr.map(function (ele){
+            return `
+            <span class="tag"> [Gift]${ele}</span>
+            `
+        })
+        document.querySelector('.name').innerHTML = strArr.join('')
+    </script>
+    
+</body>
+</html>

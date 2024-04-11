@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>splice a string</title>
+</head>
+<body>
+    <div class="spec">
+
+    </div>
+    <script>
+        const arr = [
+            {name:'Zhang San',salary:10000},
+            {name:'Li Si',salary:15000},
+            {name:'Wang Wu',salary:2000}
+        ]
+        // calculate salary
+        const total = arr.reduce(function (prev, current){
+            return prev + current.salary
+
+        },0)
+        const spec = {size: '40cm*40cm', color:'Black'}
+        // use object.attr to join string
+        document.querySelector('.spec').innerHTML = spec.size + '/' + spec.color
+
+        // or use Object.values() + join('/')
+        document.querySelector('.spec').innerHTML = Object.values(spec).join('/')
+    </script>
+    
+</body>
+</html>
