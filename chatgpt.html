@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details</title>
+</head>
+<body>
+
+<div id="product-details">
+    <h2>Weighing Hand Crank Coffee Grinder Coffee Bean Grinder</h2>
+    <p>Price: $289.9</p>
+    <img src="https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg" alt="Product Image">
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" min="1" value="1">
+    <button onclick="addToCart()">Add to Cart</button>
+</div>
+
+<script>
+// Product object
+var product = {
+    id: '4001172',
+    name: 'Weighing Hand Crank Coffee Grinder Coffee Bean Grinder',
+    price: 289.9,
+    picture: 'https://yanxuan-item.nosdn.127.net/84a59ff9c58a77032564e61f716846d6.jpg',
+    count: 2, // Initial count
+    spec: {
+        color: 'white'
+    }
+};
+
+// Function to add product to cart
+function addToCart() {
+    // Get the quantity entered by the user
+    var quantity = document.getElementById("quantity").value;
+    
+    // Convert quantity to a number
+    quantity = parseInt(quantity);
+    
+    // Perform validation if needed
+    if (quantity <= 0) {
+        alert("Please enter a valid quantity.");
+        return;
+    }
+    
+    // Update the count of the product
+    product.count = quantity;
+    
+    // Add the product to the cart or perform further actions
+    // For demonstration purposes, let's just log the updated count
+    console.log("Updated count for product '" + product.name + "': " + product.count);
+}
+</script>
+
+</body>
+</html>

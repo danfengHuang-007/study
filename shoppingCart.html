@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,6 +46,7 @@
             color: #333;
             flex: 2;
         }
+
         .item .name .tag {
             display: block;
             padding: 2px;
@@ -52,7 +54,7 @@
             color: #999;
         }
 
-        .item .price, 
+        .item .price,
         .item .sub-total {
             font-size: 18px;
             color: firebrick;
@@ -94,10 +96,12 @@
         }
     </style>
 </head>
+
 <body>
     <div class="list">
 
     </div>
+    <input type="number" id="quantity" name="quantity" min="1" value="1">
     <div class="total">
         <div>Sum: <span class="amount">1000.00</span></div>
     </div>
@@ -146,11 +150,14 @@
                 gift: '50g tea, wash balls'
             }
         ]
+        const count = document.getElementById("quantity").value;
 
         // render page 
         document.querySelector('.list').innerHTML = goodsList.map(ele => {
-            const {name, price, picture, count, spec, gift} = ele
+            
+            const { name, price, picture, count, spec, gift } = ele
             const text = Object.values(spec).join('/')
+            
             // split str into arr
             const str = gift ? gift.split(',').map(ele => `<span class="tag"> [gift] ${ele}</span>`).join('') : ''
             const subTotal = (price * 100 * count) / 100
@@ -160,15 +167,16 @@
                 <p class="name">${name} ${str}</p>
                 <p class="spec">${text}</p>
                 <p class="price">${price.toFixed(2)}</p>
-                <p class="count">x${count}</p>
+                <p class="count">${count}</p>
                 <p class="sub-total">${subTotal.toFixed(2)}</p>
             </div>
             `
         }).join('')
         // total
-        const total = goodsList.reduce((prev, current)=> prev + (current.price * 100 * current.count)/100, 0)
+        const total = goodsList.reduce((prev, current) => prev + (current.price * 100 * current.count) / 100, 0)
         document.querySelector('.amount').innerHTML = total.toFixed(2)
     </script>
-    
+
 </body>
+
 </html>

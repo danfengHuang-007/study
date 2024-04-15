@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video video {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .elevator {
+            position: fixed;
+            top: 280px;
+            right: 20px;
+            z-index: 999;
+            background: #fff;
+            border: 1px solid #e4e4e4;
+            width: 60px;
+        }
+
+        .elevator a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            text-align: center;
+            color: #999;
+        }
+
+        .elevator a.active {
+            color: #1286ff;
+        }
+
+        .outline {
+            padding-bottom: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="http://pip.itcast.cn">
+                <img src="https://pip.itcast.cn/img/logo_v3.29b9ba72.png" alt="">
+            </a>
+        </div>
+        <div class="video big">
+            <video src="https://v.itheima.net/LapADhV6.mp4" controls></video>
+        </div>
+        <div class="intro big">
+            <img src="./images/intro.png" alt="">
+        </div>
+        <div class="outline big">
+            <img src="./images/outline.png" alt="">
+        </div>
+        <div class="elevator">
+            <a href="javascript:;">Video Introduction</a>
+            <a href="javascript:;">Project Course</a>
+            <a href="javascript:;">Course Outline</a>
+        </div>
+    </div>
+    <script src="./js/lodash.min.js"></script>
+    <script>
+        // Record Playback Position
+        const video = document.querySelector('.video video')
+        video.addEventListener('timeupdate', _.throttle(()=>{
+            localStorage.setItem('currentTime', video.currentTime)
+        },1000))
+
+        // open page, let video placed at the recorded position
+        video.addEventListener('loadeddata', ()=>{
+            video.currentTime = localStorage.getItem('currentTime') || 0
+        })
+
+        window.onload = () => {
+            // elevator 
+            const smalls = document.querySelectorAll('elevator a')
+            const bigs = document.querySelectorAll('.big')
+            document.addEventListener('scroll', _.throttle(() => {
+                const n = document.documentElement.scrollTop
+                for(let i=0;i<bigs.length;i++){
+                    if(n >= bigs[i].offsetTop) {
+                        const old = document.querySelector('.elevator .active')
+                        old && old.classList.remove('active')
+                        smalls[i].classList.add('active')
+                    }
+                }
+            },200))
+        }
+    </script>
+    
+</body>
+</html>

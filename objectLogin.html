@@ -82,10 +82,32 @@
         new Modal()
 
         Modal.prototype.open = function(){
-            document.body.addend(this.modalBox)
+            const box = document.querySelector('.modal')
+            box && box.remove()
+            document.body.append(this.modalBox)
+            this.modalBox.querySelector('i').addEventListener('click', ()=>{
+                this.close()
+            })
+        }
+        Modal.prototype.close = function (){
+            this.modalBox.remove()
         }
 
         document.querySelector('#delete').addEventListener('click', ()=>{
+            const del = new Modal('kind warning', 'you do not have authority to delete')
+            del.open()
+            
+        })
+
+        document.querySelector('#login').addEventListener('click', ()=>{
+            const login = new Modal('friendly reminder', 'you have not registered yet')
+            login.open()
+            
+        })
+
+        document.querySelector('#add').addEventListener('click', ()=>{
+            const add = new Modal('stronger reminder', 'you have not authorized to add')
+            add.open()
             
         })
 
