@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise+XHR Province</title>
+</head>
+<body>
+    <h2>Use Promise+XHR to get province </h2>
+    <div class="box"></div>
+    <script>
+        const p = new Promise((resolve, reject) => {
+            // get data
+            const xhr = new XMLHttpRequest()
+            xhr.open('GET', 'http://hmajax.itheima.net/api/province')
+            xhr.addEventListener('loadend', ()=> {
+                // Determining the status of a request
+                if(xhr.status >= 200 && xhr.status < 300){
+                    // succeed
+                    resolve(JSON.parse(xhr.response))
+                }else {
+                    // Passing Exception Messages
+                    reject(new Error(xhr.response))
+                }
+            })
+            xhr.send()
+        })
+
+        p.then(res => {
+            document.querySelector('.box').innerText = res.list
+        }).catch(err => {
+            document.querySelector('.box').innerHTML = err.message
+        })
+    </script>
+    
+</body>
+</html>
